@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Portfólio de Tarefas</title>
+  <style>
+    body {
+      background-color: #0d0d0d;
+      color: #ffffff;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 20px;
+      transition: background 0.5s, color 0.5s;
+    }
+    h1 {
+      text-align: center;
+      color: #a64dff;
+    }
+    h2 {
+      color: #a64dff;
+      margin-top: 40px;
+      margin-bottom: 10px;
+    }
+    .materia {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.8s ease;
+    }
+    .materia.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .tarefa {
+      background-color: #1a1a1a;
+      border: 2px solid #a64dff;
+      border-radius: 10px;
+      padding: 15px;
+      text-align: center;
+      flex: 1;
+      margin: 0 5px;
+      position: relative;
+      cursor: pointer;
+    }
+    .tarefa:hover {
+      box-shadow: 0 0 15px #a64dff;
+    }
+    a {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    a:hover {
+      color: #a64dff;
+    }
+    /* Tooltip */
+    .tarefa span {
+      visibility: hidden;
+      background: #a64dff;
+      color: #fff;
+      text-align: center;
+      border-radius: 5px;
+      padding: 5px;
+      position: absolute;
+      bottom: 110%;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      transition: opacity 0.3s;
+      white-space: nowrap;
+    }
+    .tarefa:hover span {
+      visibility: visible;
+      opacity: 1;
+    }
+    /* Botões de filtro */
+    .filtros {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .filtros button {
+      background: #a64dff;
+      border: none;
+      color: #fff;
+      padding: 10px 20px;
+      margin: 5px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .filtros button:hover {
+      background: #7a29cc;
+    }
+    /* Tema claro */
+    body.light {
+      background-color: #ffffff;
+      color: #0d0d0d;
+    }
+    body.light h1, body.light h2 {
+      color: #7a29cc;
+    }
+    body.light .tarefa {
+      background-color: #f0f0f0;
+      border-color: #7a29cc;
+    }
+  </style>
+</head>
+<body>
+  <h1>Portfólio de Tarefas</h1>
+
+  <div class="filtros">
+    <button onclick="filtrar('all')">Todas</button>
+    <button onclick="filtrar('Back End')">Back End</button>
+    <button onclick="filtrar('JavaScript')">JavaScript</button>
+    <button onclick="filtrar('Análise')">Análise</button>
+    <button onclick="filtrar('Python')">Python</button>
+    <button onclick="filtrar('Mobile')">Mobile</button>
+    <button onclick="toggleTema()">Alternar Tema</button>
+  </div>
+
+  <h2>Back End</h2>
+  <div class="materia" data-materia="Back End">
+    <div class="tarefa"><a href="#">Tarefa 1</a><span>Descrição da tarefa 1</span></div>
+    <div class="tarefa"><a href="#">Tarefa 2</a><span>Descrição da tarefa 2</span></div>
+    <div class="tarefa"><a href="#">Tarefa 3</a><span>Descrição da tarefa 3</span></div>
+    <div class="tarefa"><a href="#">Tarefa 4</a><span>Descrição da tarefa 4</span></div>
+    <div class="tarefa"><a href="#">Tarefa 5</a><span>Descrição da tarefa 5</span></div>
+  </div>
+
+  <h2>JavaScript</h2>
+  <div class="materia" data-materia="JavaScript">
+    <div class="tarefa"><a href="#">Tarefa 1</a><span>Descrição da tarefa 1</span></div>
+    <div class="tarefa"><a href="#">Tarefa 2</a><span>Descrição da tarefa 2</span></div>
+    <div class="tarefa"><a href="#">Tarefa 3</a><span>Descrição da tarefa 3</span></div>
+    <div class="tarefa"><a href="#">Tarefa 4</a><span>Descrição da tarefa 4</span></div>
+    <div class="tarefa"><a href="#">Tarefa 5</a><span>Descrição da tarefa 5</span></div>
+  </div>
+
+  <h2>Análise</h2>
+  <div class="materia" data-materia="Análise">
+    <div class="tarefa"><a href="#">Tarefa 1</a><span>Descrição da tarefa 1</span></div>
+    <div class="tarefa"><a href="#">Tarefa 2</a><span>Descrição da tarefa 2</span></div>
+    <div class="tarefa"><a href="#">Tarefa 3</a><span>Descrição da tarefa 3</span></div>
+    <div class="tarefa"><a href="#">Tarefa 4</a><span>Descrição da tarefa 4</span></div>
+    <div class="tarefa"><a href="#">Tarefa 5</a><span>Descrição da tarefa 5</span></div>
+  </div>
+
+  <h2>Python</h2>
+  <div class="materia" data-materia="Python">
+    <div class="tarefa"><a href="#">Tarefa 1</a><span>Descrição da tarefa 1</span></div>
+    <div class="tarefa"><a href="#">Tarefa 2</a><span>Descrição da tarefa 2</span></div>
+    <div class="tarefa"><a href="#">Tarefa 3</a><span>Descrição da tarefa 3</span></div>
+    <div class="tarefa"><a href="#">Tarefa 4</a><span>Descrição da tarefa 4</span></div>
+    <div class="tarefa"><a href="#">Tarefa 5</a><span>Descrição da tarefa 5</span></div>
+  </div>
+
+  <h2>Mobile</h2>
+  <div class="materia" data-materia="Mobile">
+    <div class="tarefa"><a href="#">Tarefa 1</a><span>Descrição da tarefa 1</span></div>
+    <div class="tarefa"><a href="#">Tarefa 2</a><span>Descrição da tarefa 2</span></div>
+    <div class="tarefa"><a href="#">Tarefa 3</a><span>Descrição da tarefa 3</span></div>
+    <div class="tarefa"><a href="#">Tarefa 4</a><span>Descrição da tarefa 4</span></div>
+    <div class="tarefa"><a href="#">Tarefa 5</a><span>Descrição da tarefa 5</span></div>
+  </div>
+
+  <script>
+    // Animação de entrada
+    window.addEventListener('load', () => {
+      document.querySelectorAll('.materia').forEach((el, i) => {
+        setTimeout(() => el.classList.add('show'), i * 300);
+      });
+    });
+
+    // Filtro por matéria
+    function filtrar(materia) {
+      document.querySelectorAll('.materia').forEach(el => {
+        if (materia === 'all' || el.dataset.materia === materia) {
+          el.style.display = 'flex';
+        } else {
+          el.style.display = 'none';
+        }
+      });
+    }
+
+    // Alternar tema
+    function toggleTema() {
+      document.body.classList.toggle('light');
+    }
+  </script>
